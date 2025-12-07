@@ -24,7 +24,8 @@ class CountryGrouper(BaseEstimator, TransformerMixin):
 
     def transform(self, X):
         X = X.copy()
-        X['native-country'] = X['native-country'].where(X['native-country'].isin(self.common_countries), 'Other')
+        common = self.common_countries if self.common_countries else []
+        X['native-country'] = X['native-country'].where(X['native-country'].isin(common), 'Other')
         return X    
     
     
