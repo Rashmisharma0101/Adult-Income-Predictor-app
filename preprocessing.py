@@ -19,7 +19,7 @@ class CountryGrouper(BaseEstimator, TransformerMixin):
 
     def fit(self, X, y = None):
         counts = X['native-country'].value_counts()
-        self.common_countries = counts[counts >= self.threshold].index
+        self.common_countries = counts[counts >= self.threshold].index.tolist()
         return self
 
     def transform(self, X):
